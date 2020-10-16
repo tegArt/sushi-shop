@@ -12,7 +12,7 @@ export default {
       type: String,
       default: '',
       validator: function (value) {
-        return value === '' || ['note', 'success', 'warning', 'error'].includes(value);
+        return value === '' || ['note', 'success', 'warning', 'error', 'important'].includes(value);
       },
     },
     size: {
@@ -36,7 +36,7 @@ export default {
     }
 
     &.large {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
   }
 
@@ -52,7 +52,8 @@ export default {
     color: $orange-dark;
   }
 
-  .error {
+  .error,
+  .important {
     color: $red;
   }
 </style>

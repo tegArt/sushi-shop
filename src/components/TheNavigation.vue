@@ -4,7 +4,7 @@
       class="link"
       size="large"
     >
-      <router-link to="/">Каталог</router-link>
+      <router-link to="/">Наше меню</router-link>
     </v-paragraph>
 
     <v-paragraph

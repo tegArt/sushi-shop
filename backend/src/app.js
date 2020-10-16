@@ -24,8 +24,6 @@ db.once('open', () => {
 });
 
 app.post('/products', (req, res) => {
-  let db = req.db;
-
   const newProduct = new Product({
     title: req.body.title || '',
     imageUrl: req.body.imageUrl || '',
@@ -49,7 +47,14 @@ app.post('/products', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
-  Product.find({}, 'title description', function (error, products) {
+  let filter = {};
+
+  if (req.query.hasOwnProperty('filter')) {
+    filter = JSON.parse(req.query.filter);
+    console.log(filter);
+  }
+
+  Product.find(filter, function (error, products) {
     if (error) {
       console.error(error);
     }
@@ -57,7 +62,7 @@ app.get('/products', (req, res) => {
     res.send({
       products: products,
     });
-  }).sort({_id:-1});
+  });
 });
 
 app.listen(process.env.PORT || 8081);

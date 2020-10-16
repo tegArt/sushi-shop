@@ -46,7 +46,7 @@ export default {
 <style lang="scss" scoped>
   .flex {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
     margin: 0 -16px;
