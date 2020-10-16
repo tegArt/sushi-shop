@@ -7,6 +7,8 @@
     <v-preloader v-if="isLoading" />
 
     <v-box v-if="!isLoading">
+      <the-product-filter />
+
       <category-section
         v-for="(products, categoryName) in productsByCategories"
         :key="categoryName"
@@ -18,69 +20,35 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
 import VHeading from "@/components/VHeading";
 import VPreloader from "@/components/VPreloader";
 import CategorySection from "@/components/CategorySection";
 import VBox from "@/components/VBox";
+import TheProductFilter from "@/components/TheProductFilter";
 
 export default {
   name: 'Catalog',
   components: {
+    TheProductFilter,
     VBox,
     CategorySection,
     VPreloader,
     VHeading,
   },
-  data: function () {
-    return {
-      isLoading: false,
-      products: [],
-      filter: {},
-    }
-  },
   mounted() {
-    this.getProducts();
+    this.getProductsByCategories();
   },
   methods: {
-    getProducts: function () {
-      this.isLoading = true;
-
-      this.$axios
-        .get('http://localhost:8081/products', {
-          params: {
-            filter: this.filter,
-          },
-        })
-        .then(response => {
-          this.products = response.data.products;
-
-          setTimeout(() => {
-            this.isLoading = false;
-          }, 500);
-        })
-        .catch(error => {
-          console.log(error);
-
-          setTimeout(() => {
-            this.isLoading = false;
-          }, 500);
-        });
-    },
+    ...mapActions([
+      'getProductsByCategories',
+    ]),
   },
   computed: {
-    productsByCategories: function () {
-      let productsByCategories = {};
-
-      this.products.forEach(product => {
-        if (!Object.prototype.hasOwnProperty.call(productsByCategories, product.category)) {
-          productsByCategories[product.category] = [];
-        }
-
-        productsByCategories[product.category].push(product);
-      });
-
-      return productsByCategories;
-    },
+    ...mapState([
+      'productsByCategories',
+      'isLoading',
+    ]),
   },
 }
 </script>
