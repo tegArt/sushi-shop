@@ -1,10 +1,12 @@
 <template>
-  <input type="text" />
+  <div class="add-to-cart">
+
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'VInput',
+  name: 'AddToCart',
 }
 </script>
 

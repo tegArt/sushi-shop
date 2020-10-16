@@ -10,12 +10,13 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### backend setup
 ```
-npm run build
+cd backend
+npm install
 ```
 
-### Lints and fixes files
+### backend start
 ```
-npm run lint
+npm start
 ```
