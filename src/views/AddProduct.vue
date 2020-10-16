@@ -176,6 +176,7 @@ export default {
         })
         .then(response => {
           console.log(response);
+
           setTimeout(() => {
             this.clearForm();
             this.isLoading = false;
@@ -183,6 +184,7 @@ export default {
         })
         .catch(error => {
           console.log(error);
+
           setTimeout(() => {
             this.isLoading = false;
           }, 500);

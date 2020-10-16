@@ -1,5 +1,5 @@
 <template>
-  <v-box center>
+  <v-box align="center">
     <v-icon class="preloader">
       <icon-preloader />
     </v-icon>
