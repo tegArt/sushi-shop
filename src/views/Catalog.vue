@@ -4,11 +4,11 @@
       Наше меню
     </v-heading>
 
+    <the-product-filter />
+
     <v-preloader v-if="isLoading" />
 
     <v-box v-if="!isLoading">
-      <the-product-filter />
-
       <category-section
         v-for="(products, categoryName) in productsByCategories"
         :key="categoryName"
